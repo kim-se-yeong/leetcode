@@ -21,7 +21,7 @@ class Solution {
     public boolean DFS(TreeNode node1, TreeNode node2) {
         if (node1 == null && node2 == null) {
             return true;
-        } else if (node1 == null || node2 == null) {
+        } else if ((node1 == null && node2 != null) || (node1 != null && node2 == null)) {
             return false;
         } else {
             if (node1.val != node2.val) {
@@ -29,7 +29,7 @@ class Solution {
             }
             boolean l1 = DFS(node1.left, node2.right);
             boolean l2 = DFS(node1.right, node2.left);
-            return DFS(node1.left, node2.right) && DFS(node1.right, node2.left);
+            return l1 && l2;
         }
     }
 }
